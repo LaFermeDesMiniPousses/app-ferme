@@ -305,4 +305,24 @@ class FarmAPITest(unittest.TestCase):
             raise
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    # Run tests with better error handling
+    test_suite = unittest.TestSuite()
+    test_suite.addTest(FarmAPITest('test_01_get_zones'))
+    test_suite.addTest(FarmAPITest('test_02_get_zone_by_id'))
+    test_suite.addTest(FarmAPITest('test_03_create_update_delete_zone'))
+    test_suite.addTest(FarmAPITest('test_04_qr_code_generation'))
+    test_suite.addTest(FarmAPITest('test_05_game_answer'))
+    test_suite.addTest(FarmAPITest('test_06_visitor_session'))
+    
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(test_suite)
+    
+    # Print summary
+    print("\n=== TEST SUMMARY ===")
+    print(f"Total tests: {result.testsRun}")
+    print(f"Failures: {len(result.failures)}")
+    print(f"Errors: {len(result.errors)}")
+    print(f"Skipped: {len(result.skipped)}")
+    
+    # Exit with appropriate code
+    sys.exit(len(result.failures) + len(result.errors))
