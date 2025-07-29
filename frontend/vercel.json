@@ -1,5 +1,4 @@
 {
-  "rootDirectory": "frontend",
   "buildCommand": "yarn build",
-  "outputDirectory": "build"
+  "outputDirectory": "dist"
 }
